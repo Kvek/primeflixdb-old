@@ -3,7 +3,7 @@ import {
   AppType,
   DocumentContext,
 } from 'next/dist/shared/lib/utils';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -39,22 +39,5 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
-  }
-
-  render() {
-    return (
-      <Html>
-        <Head>
-          <title>PrimeflixDB</title>
-          <meta charSet="utf-8" />
-          <link href="logo.svg" rel="icon" sizes="16x16" type="image/svg+xml" />
-        </Head>
-
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
   }
 }

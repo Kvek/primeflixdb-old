@@ -1,9 +1,9 @@
 {
   "extends": [
+    "eslint:recommended",
     "next/core-web-vitals",
     "plugin:typescript-sort-keys/recommended",
-    "plugin:prettier/recommended",
-    "eslint:recommended"
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "simple-import-sort",
