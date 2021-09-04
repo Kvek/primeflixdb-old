@@ -14,17 +14,14 @@ export default class MyDocument extends Document {
     const styledComponentsSheetComponent = (
       Component: AppType,
       props: AppPropsType
-    ) => {
-      return sheet.collectStyles(<Component {...props} />);
-    };
+    ) => sheet.collectStyles(<Component {...props} />);
 
     try {
-      ctx.renderPage = () => {
-        return originalRenderPage({
+      ctx.renderPage = () =>
+        originalRenderPage({
           enhanceApp: (App: AppType) => (props: AppPropsType) =>
             styledComponentsSheetComponent(App, props),
         });
-      };
 
       const initialProps = await Document.getInitialProps(ctx);
       return {

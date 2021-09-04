@@ -12,6 +12,10 @@
     "better-styled-components"
   ],
   "rules": {
+    "react/self-closing-comp": [2],
+    "react/jsx-sort-props": [2],
+    "react/jsx-pascal-case": [2],
+    "arrow-body-style": ["error", "as-needed"],
     "react-hooks/exhaustive-deps": [2],
     "simple-import-sort/imports": [
       "error",
