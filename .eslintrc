@@ -1,0 +1,42 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:typescript-sort-keys/recommended",
+    "plugin:prettier/recommended",
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "simple-import-sort",
+    "sort-destructure-keys",
+    "sort-keys-fix",
+    "better-styled-components"
+  ],
+  "rules": {
+    "react-hooks/exhaustive-deps": [2],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^(react|redux)"],
+          ["^@"],
+          ["^@containers"],
+          ["^@components"],
+          ["^@utils"],
+          ["^@store"],
+          ["^"],
+          ["^\\."]
+        ]
+      }
+    ],
+    "sort-destructure-keys/sort-destructure-keys": [
+      2,
+      { "caseSensitive": true }
+    ],
+    "sort-imports": "off",
+    "sort-keys-fix/sort-keys-fix": [
+      "error",
+      "asc",
+      { "caseSensitive": true, "natural": true }
+    ]
+  }
+}
