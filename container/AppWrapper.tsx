@@ -1,12 +1,16 @@
 import React, { FC } from 'react';
 
-import { ThemeProvider } from 'styled-components';
-import { DARK_THEME, themeConfiguration } from 'theme';
+import styled from 'styled-components';
 
-const AppWrapper: FC = ({ children }) => {
-  const theme = { ...DARK_THEME, ...themeConfiguration };
+const Container = styled.div`
+  background: ${({ theme }) => theme.bgColor};
+  color: ${({ theme }) => theme.color};
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+`;
 
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-};
-
-export default AppWrapper;
+export const AppWrapper: FC = ({ children }) => (
+  <Container>{children}</Container>
+);

@@ -12,6 +12,7 @@
     "better-styled-components"
   ],
   "rules": {
+    "better-styled-components/sort-declarations-alphabetically": 2,
     "react/self-closing-comp": [2],
     "react/jsx-sort-props": [2],
     "react/jsx-pascal-case": [2],
