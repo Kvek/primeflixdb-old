@@ -9,14 +9,11 @@ export interface ThemeColorsInterface {
 }
 
 export interface BreakPointsInterface {
-  desktop: string;
-  desktopL: string;
-  laptop: string;
-  laptopL: string;
-  mobileL: string;
-  mobileM: string;
-  mobileS: string;
-  tablet: string;
+  lg: string;
+  md: string;
+  sm: string;
+  xl: string;
+  xxl: string;
 }
 
 export interface GlobalThemeInterface {
@@ -61,24 +58,19 @@ export const TRANSITION_FUNCTION = 'cubic-bezier(0.4, 0, 1, 1)';
 export const TRANSITION_SPEED = '0.15s';
 
 export const BREAK_POINTS = {
-  desktop: '2560px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  mobileL: '425px',
-  mobileM: '375px',
-  mobileS: '320px',
-  tablet: '768px',
+  lg: '992px',
+  md: '768px',
+  sm: '576px',
+  xl: '1200px',
+  xxl: '1400px',
 };
 
 export const DEVICE_BREAK_POINTS: BreakPointsInterface = {
-  desktop: `(min-width: ${BREAK_POINTS.desktop})`,
-  desktopL: `(min-width: ${BREAK_POINTS.desktop})`,
-  laptop: `(min-width: ${BREAK_POINTS.laptop})`,
-  laptopL: `(min-width: ${BREAK_POINTS.laptopL})`,
-  mobileL: `(min-width: ${BREAK_POINTS.mobileL})`,
-  mobileM: `(min-width: ${BREAK_POINTS.mobileM})`,
-  mobileS: `(min-width: ${BREAK_POINTS.mobileS})`,
-  tablet: `(min-width: ${BREAK_POINTS.tablet})`,
+  lg: `(min-width: ${BREAK_POINTS.lg})`,
+  md: `(min-width: ${BREAK_POINTS.md})`,
+  sm: `(min-width: ${BREAK_POINTS.sm})`,
+  xl: `(min-width: ${BREAK_POINTS.xl})`,
+  xxl: `(min-width: ${BREAK_POINTS.xxl})`,
 };
 
 export const COLORS: ColorsInterface = {
