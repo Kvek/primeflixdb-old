@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { BrandLetter, BrandLogo, Menu } from './Logos';
+
 const NavbarContainer = styled.div`
   box-shadow: ${({ theme }) => `0px 0px 19px -15px ${theme.boxShadow}`};
   display: flex;
@@ -13,4 +15,63 @@ const NavbarContainer = styled.div`
   z-index: 2;
 `;
 
-export const Navbar = () => <NavbarContainer />;
+const IconContainer = styled.span`
+  display: flex;
+  margin-left: 20px;
+
+  @media ${({ theme }) => theme.breakPoints.md} {
+    display: none;
+  }
+
+  svg {
+    width: 25px;
+  }
+`;
+
+const BrandLogoContainer = styled.span`
+  display: none;
+
+  @media ${({ theme }) => theme.breakPoints.md} {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  svg {
+    max-width: 200px;
+    width: 100%;
+  }
+`;
+
+const MenuContainer = styled.span`
+  display: flex;
+  margin-right: 20px;
+
+  @media ${({ theme }) => theme.breakPoints.md} {
+    display: none;
+  }
+
+  svg {
+    width: 80px;
+  }
+`;
+
+export const Navbar = () => {
+  const onMenuClick = () => null;
+
+  return (
+    <NavbarContainer>
+      <IconContainer>
+        <BrandLetter />
+      </IconContainer>
+
+      <BrandLogoContainer>
+        <BrandLogo />
+      </BrandLogoContainer>
+
+      <MenuContainer>
+        <Menu onClick={onMenuClick} />
+      </MenuContainer>
+    </NavbarContainer>
+  );
+};
