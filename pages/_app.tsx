@@ -12,6 +12,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
     <Head>
       <title>PrimeflixDB</title>
       <meta charSet="utf-8" />
+      <meta
+        content="width=device-width, maximum-scale=1, user-scalable=no"
+        name="viewport"
+      />
       <link href="logo.svg" rel="icon" sizes="16x16" type="image/svg+xml" />
     </Head>
 
