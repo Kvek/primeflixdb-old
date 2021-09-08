@@ -1,3 +1,4 @@
+import { FloatingButton } from '@components/FloatingButton';
 import { Navbar } from '@components/Navbar';
 
 import '../styles/globals.css';
@@ -21,6 +22,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
 
     <ThemeWrapper>
       <Navbar />
+      <FloatingButton />
       <ContentWrapper>
         <Component {...pageProps} />
       </ContentWrapper>
