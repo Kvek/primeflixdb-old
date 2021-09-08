@@ -31,7 +31,6 @@ export interface ColorsInterface {
   LIGHT_BORDER_HOVER: string;
   LIGHT_GRAYISH_YELLOW: string;
   MODERATE_CYAN: string;
-  SOFT_BLUE: string;
   VERY_DARK_BLUE: string;
   VERY_LIGHT_GRAY: string;
   WHITE: string;
@@ -47,7 +46,6 @@ export const GRAYISH_YELLOW = '#FDF1DE';
 export const MODERATE_CYAN = '#35d0ba';
 export const BLACK = '#000000';
 export const WHITE = '#ffffff';
-export const SOFT_BLUE = '#7298f3';
 export const LIGHT_GRAYISH_YELLOW = '#ffffb8';
 export const LIGHT_BORDER = 'rgba(255, 235, 235, 0.2)';
 export const LIGHT_BORDER_HOVER = 'rgba(0, 0, 0, 0.4)';
@@ -81,7 +79,6 @@ export const COLORS: ColorsInterface = {
   LIGHT_BORDER_HOVER,
   LIGHT_GRAYISH_YELLOW,
   MODERATE_CYAN,
-  SOFT_BLUE,
   VERY_DARK_BLUE,
   VERY_LIGHT_GRAY,
   WHITE,
@@ -98,14 +95,14 @@ export const LIGHT_THEME: ThemeColorsInterface = {
   bgColor: GRAYISH_YELLOW,
   borderColor: VERY_DARK_BLUE,
   boxShadow: BLACK,
-  color: BLACK,
+  color: VERY_DARK_BLUE,
   hoverBorderColor: LIGHT_BORDER_HOVER,
 };
 
 export const DARK_THEME: ThemeColorsInterface = {
   bgColor: BLACK,
   borderColor: LIGHT_BORDER,
-  boxShadow: LIGHT_GRAYISH_YELLOW,
-  color: GRAYISH_YELLOW,
+  boxShadow: GRAYISH_YELLOW,
+  color: LIGHT_GRAYISH_YELLOW,
   hoverBorderColor: DARK_BORDER_HOVER,
 };

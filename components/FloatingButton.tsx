@@ -48,7 +48,7 @@ const DotContainer = styled.div<IconInterface>`
 `;
 
 const Dot = styled.span`
-  background: ${({ theme: { colors } }) => colors.LIGHT_GRAYISH_YELLOW};
+  background: ${({ theme: { color } }) => color};
   border-radius: 50%;
   height: 5px;
   width: 5px;
