@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-import { DarkTheme } from '@store/atoms/DarkTheme';
+import { AppWrapper } from '@containers/AppWrapper';
+
+import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { DARK_THEME, LIGHT_THEME, themeConfiguration } from 'theme';
 
-import { AppWrapper } from './AppWrapper';
-
 const ThemeWrapper: FC = ({ children }) => {
-  const isDarkTheme = useRecoilValue(DarkTheme);
+  const isDarkTheme = useRecoilValue(ShowDarkTheme);
 
   const currentTheme = isDarkTheme ? DARK_THEME : LIGHT_THEME;
 

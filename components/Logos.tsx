@@ -1,4 +1,4 @@
-import { DarkTheme } from '@store/atoms/DarkTheme';
+import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 
 import { useRecoilValue } from 'recoil';
 import { LIGHT_GRAYISH_YELLOW, MODERATE_CYAN, VERY_DARK_BLUE } from 'theme';
@@ -7,7 +7,7 @@ interface SvgPropsInterface {
   onClick: () => void;
 }
 
-export const BrandIcon = () => (
+export const BrandIcon = (): JSX.Element => (
   <svg fill="none" viewBox="0 0 786 786" xmlns="http://www.w3.org/2000/svg">
     <path
       d="m392.857 785.714c216.969 0 392.857-175.888 392.857-392.857s-175.888-392.85693896-392.857-392.85693896-392.857 175.88793896-392.857 392.85693896 175.888 392.857 392.857 392.857z"
@@ -20,8 +20,8 @@ export const BrandIcon = () => (
   </svg>
 );
 
-export const BrandLetter = () => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const BrandLetter = (): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? MODERATE_CYAN : VERY_DARK_BLUE;
   return (
@@ -34,8 +34,8 @@ export const BrandLetter = () => {
   );
 };
 
-export const BrandLogo = () => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const BrandLogo = (): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -58,8 +58,8 @@ export const BrandLogo = () => {
   );
 };
 
-export const BrandLogoUpper = () => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const BrandLogoUpper = (): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -85,8 +85,8 @@ export const BrandLogoUpper = () => {
 export const Menu = ({
   isActive,
   onClick,
-}: SvgPropsInterface & { isActive: boolean }) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+}: SvgPropsInterface & { isActive?: boolean }): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -109,8 +109,8 @@ export const Menu = ({
   );
 };
 
-export const Close = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Close = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -131,8 +131,8 @@ export const Close = ({ onClick }: SvgPropsInterface) => {
   );
 };
 
-export const Upcoming = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Upcoming = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -156,8 +156,8 @@ export const Upcoming = ({ onClick }: SvgPropsInterface) => {
   );
 };
 
-export const Popular = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Popular = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -180,8 +180,8 @@ export const Popular = ({ onClick }: SvgPropsInterface) => {
   );
 };
 
-export const Random = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Random = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -203,8 +203,8 @@ export const Random = ({ onClick }: SvgPropsInterface) => {
   );
 };
 
-export const Classic = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Classic = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -227,8 +227,8 @@ export const Classic = ({ onClick }: SvgPropsInterface) => {
   );
 };
 
-export const Latest = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Latest = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -253,8 +253,8 @@ export const Latest = ({ onClick }: SvgPropsInterface) => {
 export const Search = ({
   isActive,
   onClick,
-}: SvgPropsInterface & { isActive: boolean }) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+}: SvgPropsInterface & { isActive: boolean }): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -279,8 +279,8 @@ export const Search = ({
   );
 };
 
-export const Home = ({ onClick }: SvgPropsInterface) => {
-  const isDarkThemeToggled = useRecoilValue(DarkTheme);
+export const Home = ({ onClick }: SvgPropsInterface): JSX.Element => {
+  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
 
@@ -300,8 +300,10 @@ export const Home = ({ onClick }: SvgPropsInterface) => {
   );
 };
 
-export const ThemeToggleIcon = ({ onClick }: { onClick: () => void }) => {
-  const isDarkTheme = useRecoilValue(DarkTheme);
+export const ThemeToggleIcon = ({
+  onClick,
+}: SvgPropsInterface): JSX.Element => {
+  const isDarkTheme = useRecoilValue(ShowDarkTheme);
 
   return isDarkTheme ? (
     <svg className="icons" fill="none" onClick={onClick} viewBox="0 0 15 15">

@@ -1,10 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { DotContainer } from '@components/DotContainer';
+import { Menu, Search, ThemeToggleIcon } from '@components/Logos';
+
+import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
+import { ShowMenu } from '@store/atoms/ShowMenu.atom';
+import { ShowSearch } from '@store/atoms/ShowSearch.atom';
+
 import { gsap } from 'gsap';
+import { toggleUpdaterHelper } from 'helper';
+import { useSetRecoilState } from 'recoil';
 import { fromEvent, Subscription, tap } from 'rxjs';
 import styled from 'styled-components';
-
-import { Menu, Search, ThemeToggleIcon } from './Logos';
 
 const Container = styled.div`
   display: none;
@@ -18,7 +25,6 @@ const Container = styled.div`
     padding-right: 30px;
     position: fixed;
     right: 0;
-    width: 80px;
     z-index: 2;
   }
 `;
@@ -33,57 +39,29 @@ const MenuContainer = styled.div`
   width: 100%;
 `;
 
-const DotContainer = styled.div`
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  max-height: 25px;
-  width: 100%;
-
-  svg {
-    height: 20px;
-    width: 20px;
-
-    &.icons {
-      opacity: 0;
-    }
-  }
-`;
-
 const MenuIconContainer = styled.span`
   svg {
     width: 50px;
   }
 `;
 
-const SearchIconContainer = styled.span`
-  svg {
-    width: 70px;
-  }
-`;
+const SearchIconContainer = styled.span``;
 
 const ThemeIconContainer = styled.span``;
 
-const Dot = styled.span`
-  background: ${({ theme: { color } }) => color};
-  border-radius: 50%;
-  height: 5px;
-  position: absolute;
-  width: 5px;
-`;
+export const FloatingButton = (): JSX.Element => {
+  const MouseEnterSubscription$ = useRef<Subscription | null>(null);
+  const MouseLeaveSubscription$ = useRef<Subscription | null>(null);
 
-export const FloatingButton = () => {
-  let MouseEnterSubscription$ = useRef<Subscription | null>(null);
-  let MouseLeaveSubscription$ = useRef<Subscription | null>(null);
+  const [hoveredIndex, setHoverIndex] = useState<number | null>(null);
 
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const setToggleDarkTheme = useSetRecoilState(ShowDarkTheme);
+  const setToggleMenu = useSetRecoilState(ShowMenu);
+  const setToggleSearch = useSetRecoilState(ShowSearch);
 
-  const setIndex = (index: number | null) => {
-    setHoveredIndex(index);
-  };
-
-  const resetIndex = () => setHoveredIndex(null);
+  const toggleTheme = () => toggleUpdaterHelper(setToggleDarkTheme);
+  const toggleMenu = () => toggleUpdaterHelper(setToggleMenu);
+  const toggleSearch = () => toggleUpdaterHelper(setToggleSearch);
 
   const setRef = useCallback((node: HTMLDivElement | null) => {
     if (node) {
@@ -151,30 +129,30 @@ export const FloatingButton = () => {
   return (
     <Container ref={setRef}>
       <MenuContainer>
-        <DotContainer className="container-2">
-          <Dot className="dot" />
-          <MenuIconContainer
-            onMouseEnter={() => setIndex(2)}
-            onMouseLeave={resetIndex}>
-            <Menu isActive={hoveredIndex === 2} onClick={() => {}} />
+        <DotContainer
+          className="container-2"
+          index={2}
+          setHoverIndex={setHoverIndex}>
+          <MenuIconContainer>
+            <Menu isActive={hoveredIndex === 2} onClick={toggleMenu} />
           </MenuIconContainer>
         </DotContainer>
 
-        <DotContainer className="container-1">
-          <Dot className="dot" />
-          <SearchIconContainer
-            onMouseEnter={() => setIndex(1)}
-            onMouseLeave={resetIndex}>
-            <Search isActive={hoveredIndex === 1} onClick={() => {}} />
+        <DotContainer
+          className="container-1"
+          index={1}
+          setHoverIndex={setHoverIndex}>
+          <SearchIconContainer>
+            <Search isActive={hoveredIndex === 1} onClick={toggleSearch} />
           </SearchIconContainer>
         </DotContainer>
 
-        <DotContainer className="container">
-          <Dot className="dot" />
-          <ThemeIconContainer
-            onMouseEnter={() => setIndex(0)}
-            onMouseLeave={resetIndex}>
-            <ThemeToggleIcon onClick={() => {}} />
+        <DotContainer
+          className="container"
+          index={0}
+          setHoverIndex={setHoverIndex}>
+          <ThemeIconContainer>
+            <ThemeToggleIcon onClick={toggleTheme} />
           </ThemeIconContainer>
         </DotContainer>
       </MenuContainer>

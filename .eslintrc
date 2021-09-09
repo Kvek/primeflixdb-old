@@ -3,21 +3,28 @@
     "eslint:recommended",
     "next/core-web-vitals",
     "plugin:typescript-sort-keys/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
     "simple-import-sort",
     "sort-destructure-keys",
     "sort-keys-fix",
-    "better-styled-components"
+    "better-styled-components",
+    "@typescript-eslint"
   ],
   "rules": {
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": 2,
     "better-styled-components/sort-declarations-alphabetically": 2,
     "react/self-closing-comp": [2],
     "react/jsx-sort-props": [2],
     "react/jsx-pascal-case": [2],
     "arrow-body-style": ["error", "as-needed"],
     "react-hooks/exhaustive-deps": [2],
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "simple-import-sort/imports": [
       "error",
       {

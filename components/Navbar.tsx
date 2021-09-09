@@ -1,8 +1,6 @@
-import React from 'react';
+import { BrandLetter, BrandLogo, Menu } from '@components/Logos';
 
 import styled from 'styled-components';
-
-import { BrandLetter, BrandLogo, Menu } from './Logos';
 
 const NavbarContainer = styled.div`
   box-shadow: ${({ theme }) => `0px 0px 19px -15px ${theme.boxShadow}`};
@@ -56,7 +54,7 @@ const MenuContainer = styled.span`
   }
 `;
 
-export const Navbar = () => {
+export const Navbar = (): JSX.Element => {
   const onMenuClick = () => null;
 
   return (
