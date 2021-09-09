@@ -1,34 +1,26 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { gsap } from 'gsap';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Subscription, tap } from 'rxjs';
 import styled from 'styled-components';
 
-import { ThemeToggleIcon } from './Logos';
-
-interface HoveredStateInterface {
-  isMenuHovered: boolean;
-}
-
-interface IconInterface extends HoveredStateInterface {
-  index: number;
-}
+import { Menu, Search, ThemeToggleIcon } from './Logos';
 
 const Container = styled.div`
-  align-items: flex-end;
-  bottom: 0;
-  display: flex;
-  height: 210px;
-  padding-bottom: 30px;
-  position: fixed;
-  width: 70px;
-  z-index: 2;
+  display: none;
+
+  @media ${({ theme }) => theme.breakPoints.lg} {
+    align-items: flex-end;
+    bottom: 0;
+    display: flex;
+    height: 210px;
+    padding-bottom: 30px;
+    padding-right: 30px;
+    position: fixed;
+    right: 0;
+    width: 80px;
+    z-index: 2;
+  }
 `;
 
 const MenuContainer = styled.div`
@@ -41,16 +33,12 @@ const MenuContainer = styled.div`
   width: 100%;
 `;
 
-const DotContainer = styled.div<IconInterface>`
+const DotContainer = styled.div`
   align-items: center;
   display: flex;
   height: 100%;
   justify-content: center;
-  max-height: ${({ isMenuHovered }) => (isMenuHovered ? '30px' : '20px')};
-  transform: ${({ index, isMenuHovered }) =>
-    `matrix(1, 0, 0, 1, 0, ${isMenuHovered ? `${index * -10}` : 0})`};
-  transition: ${({ theme: { transitionFunction, transitionSpeed } }) =>
-    `transform ${transitionSpeed} ${transitionFunction}, max-height ${transitionSpeed} ${transitionFunction}`};
+  max-height: 25px;
   width: 100%;
 
   svg {
@@ -63,6 +51,20 @@ const DotContainer = styled.div<IconInterface>`
   }
 `;
 
+const MenuIconContainer = styled.span`
+  svg {
+    width: 50px;
+  }
+`;
+
+const SearchIconContainer = styled.span`
+  svg {
+    width: 70px;
+  }
+`;
+
+const ThemeIconContainer = styled.span``;
+
 const Dot = styled.span`
   background: ${({ theme: { color } }) => color};
   border-radius: 50%;
@@ -72,23 +74,67 @@ const Dot = styled.span`
 `;
 
 export const FloatingButton = () => {
-  const boxRef = useRef(null);
-  const dotRefs = gsap.utils.selector(boxRef);
-
   let MouseEnterSubscription$ = useRef<Subscription | null>(null);
   let MouseLeaveSubscription$ = useRef<Subscription | null>(null);
 
-  const [isMenuHovered, setIsMenuHovered] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const setIndex = (index: number | null) => {
+    setHoveredIndex(index);
+  };
+
+  const resetIndex = () => setHoveredIndex(null);
 
   const setRef = useCallback((node: HTMLDivElement | null) => {
     if (node) {
+      const dotRefs = gsap.utils.selector(node);
+      const container1 = dotRefs('.container-1');
+      const container2 = dotRefs('.container-2');
+      const dots = dotRefs('.dot');
+      const icons = dotRefs('.icons');
+
       MouseEnterSubscription$.current = fromEvent(node, 'mouseenter').subscribe(
-        () => setIsMenuHovered(true)
+        () => {
+          gsap.to(container1, {
+            duration: 0.15,
+            transform: 'matrix(1, 0, 0, 1, 0, -20)',
+          });
+
+          gsap.to(container2, {
+            duration: 0.15,
+            transform: 'matrix(1, 0, 0, 1, 0, -40)',
+          });
+
+          gsap.to(dots, { delay: 0.075, duration: 0.15, opacity: 0 });
+          gsap.to(icons, {
+            delay: 0.1125,
+            duration: 0.15,
+            opacity: 1,
+          });
+        }
       );
 
-      MouseLeaveSubscription$.current = fromEvent(node, 'mouseleave').subscribe(
-        () => setIsMenuHovered(false)
-      );
+      MouseLeaveSubscription$.current = fromEvent(node, 'mouseleave')
+        .pipe(
+          tap(() => {
+            gsap.killTweensOf(dots);
+            gsap.killTweensOf(icons);
+          })
+        )
+        .subscribe(() => {
+          gsap.to(container1, {
+            duration: 0.15,
+            transform: 'matrix(1, 0, 0, 1, 0, 0)',
+          });
+
+          gsap.to(container2, {
+            duration: 0.15,
+            transform: 'matrix(1, 0, 0, 1, 0, 0)',
+          });
+
+          gsap.to(icons, { delay: 0.075, duration: 0.15, opacity: 0 });
+          gsap.to(dots, { delay: 0.1125, duration: 0.15, opacity: 1 });
+        });
     }
   }, []);
 
@@ -102,32 +148,34 @@ export const FloatingButton = () => {
     };
   }, []);
 
-  useLayoutEffect(() => {
-    const dots = dotRefs('.dot');
-    const icons = dotRefs('.icons');
-
-    if (isMenuHovered) {
-      gsap.to(dots, { duration: 0.15, opacity: 0 });
-      gsap.to(icons, { delay: 0.075, duration: 0.15, opacity: 1 });
-    } else {
-      gsap.to(icons, { duration: 0.15, opacity: 0 });
-      gsap.to(dots, { delay: 0.075, duration: 0.15, opacity: 1 });
-    }
-  }, [isMenuHovered, dotRefs]);
-
   return (
     <Container ref={setRef}>
-      <MenuContainer ref={boxRef}>
-        <DotContainer id="2" index={2} isMenuHovered={isMenuHovered}>
+      <MenuContainer>
+        <DotContainer className="container-2">
           <Dot className="dot" />
+          <MenuIconContainer
+            onMouseEnter={() => setIndex(2)}
+            onMouseLeave={resetIndex}>
+            <Menu isActive={hoveredIndex === 2} onClick={() => {}} />
+          </MenuIconContainer>
         </DotContainer>
 
-        <DotContainer id="1" index={1} isMenuHovered={isMenuHovered}>
+        <DotContainer className="container-1">
           <Dot className="dot" />
-          <ThemeToggleIcon onClick={() => {}} />
+          <SearchIconContainer
+            onMouseEnter={() => setIndex(1)}
+            onMouseLeave={resetIndex}>
+            <Search isActive={hoveredIndex === 1} onClick={() => {}} />
+          </SearchIconContainer>
         </DotContainer>
-        <DotContainer id="0" index={0} isMenuHovered={isMenuHovered}>
+
+        <DotContainer className="container">
           <Dot className="dot" />
+          <ThemeIconContainer
+            onMouseEnter={() => setIndex(0)}
+            onMouseLeave={resetIndex}>
+            <ThemeToggleIcon onClick={() => {}} />
+          </ThemeIconContainer>
         </DotContainer>
       </MenuContainer>
     </Container>
