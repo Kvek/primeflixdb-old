@@ -5,8 +5,8 @@ import { Moon } from '@logos/Moon';
 import { Search } from '@logos/Search';
 import { Sun } from '@logos/Sun';
 
-import { DotContainer } from '@components/DotContainer';
-import { IconButtonContainer } from '@components/IconButtonContainer';
+import { DotContainer } from '@containers/DotContainer';
+import { IconButtonContainer } from '@containers/IconButtonContainer';
 
 import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 import { ShowMenu } from '@store/atoms/ShowMenu.atom';

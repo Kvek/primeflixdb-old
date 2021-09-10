@@ -16,13 +16,14 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-export const ContentWrapper: FC = ({ children }) => (
-  <>
-    <CssBaseline />
-    {useRecoilValue(ShowLoading) ? (
-      <Loading />
-    ) : (
+export const ContentWrapper: FC = ({ children }) => {
+  const isLoading = useRecoilValue(ShowLoading);
+  return (
+    <>
+      <CssBaseline />
+      {isLoading && <Loading />}
+
       <Container>{children}</Container>
-    )}
-  </>
-);
+    </>
+  );
+};
