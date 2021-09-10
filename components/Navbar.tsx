@@ -56,22 +56,18 @@ const MenuContainer = styled.span`
   }
 `;
 
-export const Navbar = (): JSX.Element => {
-  const onMenuClick = () => null;
+export const Navbar = (): JSX.Element => (
+  <NavbarContainer>
+    <IconContainer>
+      <BrandLetter />
+    </IconContainer>
 
-  return (
-    <NavbarContainer>
-      <IconContainer>
-        <BrandLetter />
-      </IconContainer>
+    <BrandLogoContainer>
+      <BrandLogo />
+    </BrandLogoContainer>
 
-      <BrandLogoContainer>
-        <BrandLogo />
-      </BrandLogoContainer>
-
-      <MenuContainer>
-        <Menu onClick={onMenuClick} />
-      </MenuContainer>
-    </NavbarContainer>
-  );
-};
+    <MenuContainer>
+      <Menu />
+    </MenuContainer>
+  </NavbarContainer>
+);
