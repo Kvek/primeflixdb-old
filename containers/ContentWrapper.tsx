@@ -1,5 +1,10 @@
 import { FC } from 'react';
 
+import { Loading } from '@components/Loading';
+
+import { ShowLoading } from '@store/atoms/ShowLoading.atom';
+
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -9,6 +14,5 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-export const ContentWrapper: FC = ({ children }) => (
-  <Container>{children}</Container>
-);
+export const ContentWrapper: FC = ({ children }) =>
+  useRecoilValue(ShowLoading) ? <Loading /> : <Container>{children}</Container>;

@@ -1,5 +1,7 @@
-import { BrandLetter, BrandLogo, Menu } from '@components/Logos';
+import { Menu } from '@logos/Menu';
 
+import { BrandLetter } from 'logos/BrandLetter';
+import { BrandLogo } from 'logos/BrandLogo';
 import styled from 'styled-components';
 
 const NavbarContainer = styled.div`
@@ -22,7 +24,7 @@ const IconContainer = styled.span`
   }
 
   svg {
-    width: 25px;
+    width: 30px;
   }
 `;
 
