@@ -1,8 +1,7 @@
 import { LIGHT_GRAYISH_YELLOW } from 'theme';
-import { SvgPropsInterface } from 'types';
 
-export const Sun = ({ onClick }: SvgPropsInterface): JSX.Element => (
-  <svg className="iconss" fill="none" onClick={onClick} viewBox="0 0 15 15">
+export const Sun = (): JSX.Element => (
+  <svg fill="none" viewBox="0 0 15 15">
     <title>Click to toggle light mode</title>
     <g fill={LIGHT_GRAYISH_YELLOW}>
       <path d="m11.25 7.5c0 .7417-.2199 1.46668-.632 2.08339s-.9977 1.09731-1.68293 1.38121c-.68523.2838-1.43925.358-2.16664.2133-.72745-.1447-1.39564-.5018-1.92008-1.0263-.52445-.52439-.8816-1.19258-1.02629-1.92003-.1447-.72739-.07044-1.48141.21339-2.16664s.76448-1.27089 1.38116-1.68294c.61671-.41206 1.34169-.63199 2.08339-.63199.99455 0 1.94839.39509 2.6516 1.09835.7033.70326 1.0984 1.6571 1.0984 2.65165z" />

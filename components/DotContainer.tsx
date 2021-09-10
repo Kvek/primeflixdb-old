@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, memo, ReactNode } from 'react';
 
 import styled from 'styled-components';
 
@@ -20,10 +20,10 @@ const Container = styled.div`
     max-width: 70px;
     min-width: 50px;
     width: 100%;
+  }
 
-    &.icons {
-      opacity: 0;
-    }
+  .icons {
+    opacity: 0;
   }
 `;
 
@@ -35,17 +35,16 @@ const Dot = styled.span`
   width: 5px;
 `;
 
-export const DotContainer: FC<DotContainerPropsInterface> = ({
-  children,
-  className,
-  index,
-  setHoverIndex,
-}) => (
-  <Container
-    className={className}
-    onMouseEnter={() => setHoverIndex(index)}
-    onMouseLeave={() => setHoverIndex(null)}>
-    <Dot className="dot" />
-    {children}
-  </Container>
+export const DotContainer: FC<DotContainerPropsInterface> = memo(
+  ({ children, className, index, setHoverIndex }) => (
+    <Container
+      className={className}
+      onMouseEnter={() => setHoverIndex(index)}
+      onMouseLeave={() => setHoverIndex(null)}>
+      <Dot className="dot" />
+      {children}
+    </Container>
+  )
 );
+
+DotContainer.displayName = 'DotContainer';

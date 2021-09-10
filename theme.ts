@@ -1,3 +1,5 @@
+import { createTheme } from '@material-ui/core';
+
 import 'styled-components';
 
 export interface ThemeColorsInterface {
@@ -106,3 +108,18 @@ export const DARK_THEME: ThemeColorsInterface = {
   color: LIGHT_GRAYISH_YELLOW,
   hoverBorderColor: DARK_BORDER_HOVER,
 };
+
+export const muiTheme = createTheme({
+  overrides: {
+    MuiIconButton: {
+      root: {
+        backgroundColor: 'rgba(0, 0, 0, 0) !important',
+      },
+    },
+  },
+  props: {
+    MuiButtonBase: {
+      disableRipple: true,
+    },
+  },
+});

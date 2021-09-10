@@ -2,12 +2,8 @@ import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 
 import { useRecoilValue } from 'recoil';
 import { LIGHT_GRAYISH_YELLOW, MODERATE_CYAN, VERY_DARK_BLUE } from 'theme';
-import { SvgPropsInterface } from 'types';
 
-export const Search = ({
-  isActive,
-  onClick,
-}: SvgPropsInterface & { isActive: boolean }): JSX.Element => {
+export const Search = ({ isActive }: { isActive: boolean }): JSX.Element => {
   const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
@@ -16,7 +12,6 @@ export const Search = ({
     <svg
       className="icons"
       fill="none"
-      onClick={onClick}
       viewBox="0 0 462 90"
       xmlns="http://www.w3.org/2000/svg">
       <title>Click to search</title>

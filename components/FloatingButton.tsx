@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { Menu } from '@logos/Menu';
+import { Moon } from '@logos/Moon';
+import { Search } from '@logos/Search';
+import { Sun } from '@logos/Sun';
+
 import { DotContainer } from '@components/DotContainer';
-import { Menu, Search, ThemeToggleIcon } from '@components/Logos';
+import { IconButtonContainer } from '@components/IconButtonContainer';
 
 import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 import { ShowMenu } from '@store/atoms/ShowMenu.atom';
@@ -9,7 +14,7 @@ import { ShowSearch } from '@store/atoms/ShowSearch.atom';
 
 import { gsap } from 'gsap';
 import { toggleUpdaterHelper } from 'helper';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { fromEvent, Subscription, tap } from 'rxjs';
 import styled from 'styled-components';
 
@@ -45,23 +50,30 @@ const MenuIconContainer = styled.span`
   }
 `;
 
-const SearchIconContainer = styled.span``;
-
-const ThemeIconContainer = styled.span``;
-
 export const FloatingButton = (): JSX.Element => {
   const MouseEnterSubscription$ = useRef<Subscription | null>(null);
   const MouseLeaveSubscription$ = useRef<Subscription | null>(null);
 
   const [hoveredIndex, setHoverIndex] = useState<number | null>(null);
 
-  const setToggleDarkTheme = useSetRecoilState(ShowDarkTheme);
+  const [isDarkTheme, setToggleDarkTheme] = useRecoilState(ShowDarkTheme);
   const setToggleMenu = useSetRecoilState(ShowMenu);
   const setToggleSearch = useSetRecoilState(ShowSearch);
 
-  const toggleTheme = () => toggleUpdaterHelper(setToggleDarkTheme);
-  const toggleMenu = () => toggleUpdaterHelper(setToggleMenu);
-  const toggleSearch = () => toggleUpdaterHelper(setToggleSearch);
+  const toggleTheme = useCallback(
+    () => toggleUpdaterHelper(setToggleDarkTheme),
+    [setToggleDarkTheme]
+  );
+
+  const toggleMenu = useCallback(
+    () => toggleUpdaterHelper(setToggleMenu),
+    [setToggleMenu]
+  );
+
+  const toggleSearch = useCallback(
+    () => toggleUpdaterHelper(setToggleSearch),
+    [setToggleSearch]
+  );
 
   const setRef = useCallback((node: HTMLDivElement | null) => {
     if (node) {
@@ -134,7 +146,9 @@ export const FloatingButton = (): JSX.Element => {
           index={2}
           setHoverIndex={setHoverIndex}>
           <MenuIconContainer>
-            <Menu isActive={hoveredIndex === 2} onClick={toggleMenu} />
+            <IconButtonContainer onClick={toggleMenu}>
+              <Menu isActive={hoveredIndex === 2} />
+            </IconButtonContainer>
           </MenuIconContainer>
         </DotContainer>
 
@@ -142,18 +156,18 @@ export const FloatingButton = (): JSX.Element => {
           className="container-1"
           index={1}
           setHoverIndex={setHoverIndex}>
-          <SearchIconContainer>
-            <Search isActive={hoveredIndex === 1} onClick={toggleSearch} />
-          </SearchIconContainer>
+          <IconButtonContainer onClick={toggleSearch}>
+            <Search isActive={hoveredIndex === 1} />
+          </IconButtonContainer>
         </DotContainer>
 
         <DotContainer
           className="container"
           index={0}
           setHoverIndex={setHoverIndex}>
-          <ThemeIconContainer>
-            <ThemeToggleIcon onClick={toggleTheme} />
-          </ThemeIconContainer>
+          <IconButtonContainer onClick={toggleTheme}>
+            {isDarkTheme ? <Sun /> : <Moon />}
+          </IconButtonContainer>
         </DotContainer>
       </MenuContainer>
     </Container>

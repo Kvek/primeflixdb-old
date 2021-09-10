@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { CssBaseline } from '@material-ui/core';
+
 import { Loading } from '@components/Loading';
 
 import { ShowLoading } from '@store/atoms/ShowLoading.atom';
@@ -14,5 +16,13 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-export const ContentWrapper: FC = ({ children }) =>
-  useRecoilValue(ShowLoading) ? <Loading /> : <Container>{children}</Container>;
+export const ContentWrapper: FC = ({ children }) => (
+  <>
+    <CssBaseline />
+    {useRecoilValue(ShowLoading) ? (
+      <Loading />
+    ) : (
+      <Container>{children}</Container>
+    )}
+  </>
+);

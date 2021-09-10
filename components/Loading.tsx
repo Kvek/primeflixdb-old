@@ -30,7 +30,7 @@ const timeLine = gsap.timeline({
   ease: 'elastic',
 });
 
-export const Loading = () => {
+export const Loading = (): JSX.Element => {
   const setShowLoadingScreen = useSetRecoilState(ShowLoading);
 
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);
