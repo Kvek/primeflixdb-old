@@ -5,4 +5,4 @@ const Container = styled.div`
   width: 100%;
 `;
 
-export const Carousel = () => <Container />;
+export const Carousel = (): JSX.Element => <Container />;

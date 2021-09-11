@@ -12,6 +12,6 @@ const Item = styled.div<CarouselItemPropsInterface>`
   width: 100%;
 `;
 
-export const CarouselItem = ({ src }: CarouselItemPropsInterface) => (
-  <Item src={src} />
-);
+export const CarouselItem = ({
+  src,
+}: CarouselItemPropsInterface): JSX.Element => <Item src={src} />;
