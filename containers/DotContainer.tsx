@@ -13,7 +13,7 @@ const Container = styled.div`
   display: flex;
   height: 100%;
   justify-content: center;
-  max-height: 25px;
+  max-height: 20px;
 
   svg {
     height: 20px;

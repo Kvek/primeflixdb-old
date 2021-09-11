@@ -27,7 +27,7 @@ const Container = styled.div`
     display: flex;
     height: 210px;
     padding-bottom: 30px;
-    padding-right: 30px;
+    padding-right: 10px;
     position: fixed;
     right: 0;
     z-index: 2;
