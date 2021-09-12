@@ -1,11 +1,19 @@
+import { useEffect, useState } from 'react';
+
 import { Menu } from '@logos/Menu';
 
 import { BrandLetter } from 'logos/BrandLetter';
 import { BrandLogo } from 'logos/BrandLogo';
+import { useRouter } from 'next/router';
+import { scrollSubject } from 'observables/ScrollSubject';
+import { Subscription } from 'rxjs';
 import styled from 'styled-components';
 
-const NavbarContainer = styled.div`
-  box-shadow: ${({ theme }) => `0px 0px 19px -15px ${theme.boxShadow}`};
+interface NavbarInterface {
+  showShadow: boolean;
+}
+
+const NavbarContainer = styled.div<NavbarInterface>`
   display: flex;
   height: 80px;
   justify-content: space-between;
@@ -13,6 +21,9 @@ const NavbarContainer = styled.div`
   top: 0;
   width: 100%;
   z-index: 2;
+
+  ${({ showShadow, theme }) =>
+    showShadow ? ` box-shadow: 0px 0px 19px -15px ${theme.boxShadow};` : ''};
 `;
 
 const IconContainer = styled.span`
@@ -56,18 +67,39 @@ const MenuContainer = styled.span`
   }
 `;
 
-export const Navbar = (): JSX.Element => (
-  <NavbarContainer>
-    <IconContainer>
-      <BrandLetter />
-    </IconContainer>
+let ScrollSubjectSubscription$: Subscription;
 
-    <BrandLogoContainer>
-      <BrandLogo />
-    </BrandLogoContainer>
+export const Navbar = (): JSX.Element => {
+  const [showShadow, setShowShadow] = useState(false);
+  const { pathname } = useRouter();
 
-    <MenuContainer>
-      <Menu />
-    </MenuContainer>
-  </NavbarContainer>
-);
+  useEffect(() => {
+    const scrollToggleHeight = (window.innerWidth * 56.25) / 100 - 80;
+
+    ScrollSubjectSubscription$ = scrollSubject.subscribe((e) => {
+      if (pathname === '/') {
+        setShowShadow(e > scrollToggleHeight);
+      }
+    });
+
+    () => {
+      ScrollSubjectSubscription$.unsubscribe();
+    };
+  }, [pathname]);
+
+  return (
+    <NavbarContainer showShadow={showShadow}>
+      <IconContainer>
+        <BrandLetter />
+      </IconContainer>
+
+      <BrandLogoContainer>
+        <BrandLogo />
+      </BrandLogoContainer>
+
+      <MenuContainer>
+        <Menu />
+      </MenuContainer>
+    </NavbarContainer>
+  );
+};
