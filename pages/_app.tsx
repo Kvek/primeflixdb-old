@@ -5,14 +5,16 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { ContentWrapper } from '@containers/ContentWrapper';
 import ThemeWrapper from '@containers/ThemeWrapper';
 
-import { FloatingButton } from '@components/FloatingButton';
 import { Navbar } from '@components/Navbar';
 
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import { muiTheme } from 'theme';
+
+const FloatingButton = dynamic(() => import('../components/FloatingButton'));
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {

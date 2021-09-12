@@ -50,7 +50,7 @@ const MenuIconContainer = styled.span`
   }
 `;
 
-export const FloatingButton = (): JSX.Element => {
+const FloatingButton = (): JSX.Element => {
   const MouseEnterSubscription$ = useRef<Subscription | null>(null);
   const MouseLeaveSubscription$ = useRef<Subscription | null>(null);
 
@@ -173,3 +173,5 @@ export const FloatingButton = (): JSX.Element => {
     </Container>
   );
 };
+
+export default FloatingButton;

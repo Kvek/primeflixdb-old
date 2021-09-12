@@ -1,13 +1,12 @@
 import { FC } from 'react';
 
-import { CssBaseline } from '@material-ui/core';
-
-import { Loading } from '@components/Loading';
-
 import { ShowLoading } from '@store/atoms/ShowLoading.atom';
 
+import dynamic from 'next/dynamic';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+
+const Loading = dynamic(() => import('../components/Loading'));
 
 const Container = styled.div`
   height: 100%;
@@ -20,7 +19,6 @@ export const ContentWrapper: FC = ({ children }) => {
   const isLoading = useRecoilValue(ShowLoading);
   return (
     <>
-      <CssBaseline />
       {isLoading && <Loading />}
 
       <Container>{children}</Container>

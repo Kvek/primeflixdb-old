@@ -30,7 +30,7 @@ const timeLine = gsap.timeline({
   ease: 'elastic',
 });
 
-export const Loading = (): JSX.Element => {
+const Loading = (): JSX.Element => {
   const setShowLoadingScreen = useSetRecoilState(ShowLoading);
 
   const [isLoadingComplete, setIsLoadingComplete] = useState(false);
@@ -69,3 +69,5 @@ export const Loading = (): JSX.Element => {
     </Container>
   );
 };
+
+export default Loading;
