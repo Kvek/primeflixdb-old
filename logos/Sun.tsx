@@ -1,6 +1,6 @@
 import { LIGHT_GRAYISH_YELLOW } from 'theme';
 
-export const Sun = (): JSX.Element => (
+const Sun = (): JSX.Element => (
   <svg fill="none" viewBox="0 0 15 15">
     <title>Click to toggle light mode</title>
     <g fill={LIGHT_GRAYISH_YELLOW}>
@@ -9,3 +9,5 @@ export const Sun = (): JSX.Element => (
     </g>
   </svg>
 );
+
+export default Sun;

@@ -1,6 +1,6 @@
 import { VERY_DARK_BLUE } from 'theme';
 
-export const Moon = (): JSX.Element => (
+const Moon = (): JSX.Element => (
   <svg fill="none" viewBox="0 0 15 15">
     <title>Click to toggle dark mode</title>
     <path
@@ -9,3 +9,4 @@ export const Moon = (): JSX.Element => (
     />
   </svg>
 );
+export default Moon;

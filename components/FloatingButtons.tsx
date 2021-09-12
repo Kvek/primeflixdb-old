@@ -1,10 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Menu } from '@logos/Menu';
-import { Moon } from '@logos/Moon';
-import { Search } from '@logos/Search';
-import { Sun } from '@logos/Sun';
-
 import { DotContainer } from '@containers/DotContainer';
 import { IconButtonContainer } from '@containers/IconButtonContainer';
 
@@ -14,9 +9,15 @@ import { ShowSearch } from '@store/atoms/ShowSearch.atom';
 
 import { gsap } from 'gsap';
 import { toggleUpdaterHelper } from 'helper';
+import dynamic from 'next/dynamic';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { fromEvent, Subscription, tap } from 'rxjs';
 import styled from 'styled-components';
+
+const Menu = dynamic(() => import('../logos/Menu'));
+const Search = dynamic(() => import('../logos/Search'));
+const Moon = dynamic(() => import('../logos/Moon'));
+const Sun = dynamic(() => import('../logos/Sun'));
 
 const Container = styled.div`
   display: none;
@@ -50,7 +51,7 @@ const MenuIconContainer = styled.span`
   }
 `;
 
-const FloatingButton = (): JSX.Element => {
+const FloatingButtons = (): JSX.Element => {
   const MouseEnterSubscription$ = useRef<Subscription | null>(null);
   const MouseLeaveSubscription$ = useRef<Subscription | null>(null);
 
@@ -174,4 +175,4 @@ const FloatingButton = (): JSX.Element => {
   );
 };
 
-export default FloatingButton;
+export default FloatingButtons;

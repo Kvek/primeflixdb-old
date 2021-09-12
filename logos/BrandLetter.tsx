@@ -3,7 +3,7 @@ import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 import { useRecoilValue } from 'recoil';
 import { MODERATE_CYAN, VERY_DARK_BLUE } from 'theme';
 
-export const BrandLetter = (): JSX.Element => {
+const BrandLetter = (): JSX.Element => {
   const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? MODERATE_CYAN : VERY_DARK_BLUE;
@@ -17,3 +17,4 @@ export const BrandLetter = (): JSX.Element => {
     </svg>
   );
 };
+export default BrandLetter;

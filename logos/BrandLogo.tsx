@@ -10,7 +10,7 @@ import { LIGHT_GRAYISH_YELLOW, VERY_DARK_BLUE } from 'theme';
 
 let ScrollSubjectSubscription$: Subscription;
 
-export const BrandLogo = memo((): JSX.Element => {
+const BrandLogo = memo((): JSX.Element => {
   const { pathname } = useRouter();
 
   const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
@@ -56,3 +56,5 @@ export const BrandLogo = memo((): JSX.Element => {
 });
 
 BrandLogo.displayName = 'BrandLogo';
+
+export default BrandLogo;

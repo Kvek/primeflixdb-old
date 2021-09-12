@@ -2,8 +2,9 @@ import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 
 import { useRecoilValue } from 'recoil';
 import { LIGHT_GRAYISH_YELLOW, MODERATE_CYAN, VERY_DARK_BLUE } from 'theme';
+import { MenuItemsInterface } from 'types';
 
-export const Menu = ({ isActive }: { isActive?: boolean }): JSX.Element => {
+const Menu = ({ isActive }: MenuItemsInterface): JSX.Element => {
   const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
 
   const fill = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
@@ -25,3 +26,5 @@ export const Menu = ({ isActive }: { isActive?: boolean }): JSX.Element => {
     </svg>
   );
 };
+
+export default Menu;

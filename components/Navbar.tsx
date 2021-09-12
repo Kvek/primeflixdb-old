@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { Menu } from '@logos/Menu';
-
-import { BrandLetter } from 'logos/BrandLetter';
-import { BrandLogo } from 'logos/BrandLogo';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { scrollSubject } from 'observables/ScrollSubject';
 import { Subscription } from 'rxjs';
 import styled from 'styled-components';
+
+const BrandLetter = dynamic(() => import('../logos/BrandLetter'));
+const BrandLogo = dynamic(() => import('../logos/BrandLogo'));
+const Menu = dynamic(() => import('../logos/Menu'));
 
 interface NavbarInterface {
   showShadow: boolean;
@@ -74,7 +75,7 @@ export const Navbar = (): JSX.Element => {
   const { pathname } = useRouter();
 
   useEffect(() => {
-    const scrollToggleHeight = (window.innerWidth * 56.25) / 100 - 80;
+    const scrollToggleHeight = (window.innerWidth * 56.25) / 100;
 
     ScrollSubjectSubscription$ = scrollSubject.subscribe((e) => {
       if (pathname === '/') {

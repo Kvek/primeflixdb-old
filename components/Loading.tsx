@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { BrandIcon } from '@logos/BrandIcon';
-
 import { ShowLoading } from '@store/atoms/ShowLoading.atom';
 
 import { gsap } from 'gsap';
+import dynamic from 'next/dynamic';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+
+const BrandIcon = dynamic(() => import('../logos/BrandIcon'));
 
 const Container = styled.div`
   align-items: center;

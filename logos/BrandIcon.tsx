@@ -9,7 +9,7 @@ const Icon = styled.svg`
   }
 `;
 
-export const BrandIcon = (): JSX.Element => (
+const BrandIcon = (): JSX.Element => (
   <Icon
     fill="none"
     id="loading-logo"
@@ -27,3 +27,5 @@ export const BrandIcon = (): JSX.Element => (
     </g>
   </Icon>
 );
+
+export default BrandIcon;

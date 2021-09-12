@@ -14,7 +14,7 @@ import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import { muiTheme } from 'theme';
 
-const FloatingButton = dynamic(() => import('../components/FloatingButton'));
+const FloatingButtons = dynamic(() => import('../components/FloatingButtons'));
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {
@@ -42,7 +42,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       <ThemeWrapper>
         <ThemeProvider theme={muiTheme}>
           <Navbar />
-          <FloatingButton />
+          <FloatingButtons />
           <ContentWrapper>
             <Component {...pageProps} />
           </ContentWrapper>
