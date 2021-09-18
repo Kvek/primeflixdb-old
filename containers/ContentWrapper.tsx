@@ -1,6 +1,9 @@
 import { FC } from 'react';
 
+import { Search } from '@components/Search';
+
 import { ShowLoading } from '@store/atoms/ShowLoading.atom';
+import { ShowSearch } from '@store/atoms/ShowSearch.atom';
 
 import dynamic from 'next/dynamic';
 import { scrollSubject } from 'observables/ScrollSubject';
@@ -30,10 +33,13 @@ const onScrollHandler = (node: Element | null) => {
 
 export const ContentWrapper: FC = ({ children }) => {
   const isLoading = useRecoilValue(ShowLoading);
+  const showSearch = useRecoilValue(ShowSearch);
 
   return (
     <>
       {isLoading && <Loading />}
+
+      {showSearch && <Search />}
 
       <Container ref={onScrollHandler}>{children}</Container>
     </>

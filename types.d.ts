@@ -6,7 +6,7 @@ export interface SvgPropsInterface {
 }
 
 export interface MenuItemsInterface {
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 // and extend them!

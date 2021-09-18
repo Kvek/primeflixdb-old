@@ -5,7 +5,9 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   height: 100%;
-  position: relative;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+  width: 100vw;
 `;
 
 const Home: NextPage = () => (

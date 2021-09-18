@@ -31,7 +31,7 @@ const IconContainer = styled.span`
   display: flex;
   margin-left: 20px;
 
-  @media ${({ theme }) => theme.breakPoints.md} {
+  @media ${({ theme }) => theme.breakPoints.lg} {
     display: none;
   }
 
@@ -43,7 +43,7 @@ const IconContainer = styled.span`
 const BrandLogoContainer = styled.span`
   display: none;
 
-  @media ${({ theme }) => theme.breakPoints.md} {
+  @media ${({ theme }) => theme.breakPoints.lg} {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -59,7 +59,7 @@ const MenuContainer = styled.span`
   display: flex;
   margin-right: 20px;
 
-  @media ${({ theme }) => theme.breakPoints.md} {
+  @media ${({ theme }) => theme.breakPoints.lg} {
     display: none;
   }
 

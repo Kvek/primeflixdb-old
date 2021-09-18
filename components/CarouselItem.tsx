@@ -9,7 +9,7 @@ const Item = styled.div<CarouselItemPropsInterface>`
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
-  width: 100%;
+  min-width: 100%;
 `;
 
 export const CarouselItem = ({
