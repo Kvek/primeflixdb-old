@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import styled from '@emotion/styled';
+
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { scrollSubject } from 'observables/ScrollSubject';
 import { Subscription } from 'rxjs';
-import styled from 'styled-components';
 
 const BrandLetter = dynamic(() => import('../logos/BrandLetter'));
 const BrandLogo = dynamic(() => import('../logos/BrandLogo'));

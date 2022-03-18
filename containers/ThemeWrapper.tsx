@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
+import { ThemeProvider } from '@emotion/react';
+
 import { AppWrapper } from '@containers/AppWrapper';
 
 import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
 
 import { useRecoilValue } from 'recoil';
-import { ThemeProvider } from 'styled-components';
 import { DARK_THEME, LIGHT_THEME, themeConfiguration } from 'theme';
 
 const ThemeWrapper: FC = ({ children }) => {

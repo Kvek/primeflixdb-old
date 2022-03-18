@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import styled from '@emotion/styled';
+
 import { Search } from '@components/Search';
 
 import { ShowLoading } from '@store/atoms/ShowLoading.atom';
@@ -9,7 +11,6 @@ import dynamic from 'next/dynamic';
 import { scrollSubject } from 'observables/ScrollSubject';
 import { useRecoilValue } from 'recoil';
 import { fromEvent, Subscription } from 'rxjs';
-import styled from 'styled-components';
 
 const Loading = dynamic(() => import('../components/Loading'));
 

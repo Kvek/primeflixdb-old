@@ -1,4 +1,4 @@
-import 'styled-components';
+import '@emotion/react';
 import { GlobalThemeInterface, ThemeColorsInterface } from 'theme';
 
 export interface SvgPropsInterface {
@@ -10,8 +10,6 @@ export interface MenuItemsInterface {
 }
 
 // and extend them!
-declare module 'styled-components' {
-  export interface DefaultTheme
-    extends GlobalThemeInterface,
-      ThemeColorsInterface {}
+declare module '@emotion/react' {
+  export interface Theme extends GlobalThemeInterface, ThemeColorsInterface {}
 }

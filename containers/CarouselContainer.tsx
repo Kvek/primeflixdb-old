@@ -1,6 +1,7 @@
+import styled from '@emotion/styled';
+
 import { Carousel } from '@components/Carousel';
 
-import styled from 'styled-components';
 import { GRAYISH_YELLOW } from 'theme';
 
 const Container = styled.div`

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 import { CarouselItem } from './CarouselItem';
 
@@ -14,7 +14,5 @@ const Container = styled.div`
 export const Carousel = (): JSX.Element => (
   <Container>
     <CarouselItem src={'/1.webp'} />
-    <CarouselItem src={'/2.webp'} />
-    <CarouselItem src={'/3.webp'} />
   </Container>
 );

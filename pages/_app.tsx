@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-
+import { EmotionCache } from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import { ContentWrapper } from '@containers/ContentWrapper';
@@ -14,19 +14,23 @@ import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import { muiTheme } from 'theme';
 
+import { createEmotionCache } from './_document';
+
 const FloatingButtons = dynamic(() => import('../components/FloatingButtons'));
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles?.parentElement?.removeChild(jssStyles);
-    }
-  }, []);
+interface MyAppPropsInterface extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
-  return (
-    <RecoilRoot>
+const clientSideEmotionCache = createEmotionCache();
+
+const MyApp = ({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: MyAppPropsInterface): JSX.Element => (
+  <RecoilRoot>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>PrimeflixDB</title>
         <meta charSet="utf-8" />
@@ -34,9 +38,8 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
           content="PrimeflixDB is a website to view information about movies and tv shows"
           name="description"
         />
-        <meta content="#000000" name="theme-color" />
-        <link href="logo.svg" rel="icon" sizes="16x16" type="image/svg+xml" />
-        <link href="/maskable_icon.png" rel="apple-touch-icon" />
+        {/* PWA primary color */}
+        <meta content={'#000'} name="theme-color" />
       </Head>
 
       <ThemeWrapper>
@@ -48,7 +51,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
           </ContentWrapper>
         </ThemeProvider>
       </ThemeWrapper>
-    </RecoilRoot>
-  );
-};
+    </CacheProvider>
+  </RecoilRoot>
+);
 export default MyApp;

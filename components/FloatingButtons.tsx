@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import styled from '@emotion/styled';
+
 import { DotContainer } from '@containers/DotContainer';
 import { IconButtonContainer } from '@containers/IconButtonContainer';
 
@@ -12,7 +14,6 @@ import { toggleUpdaterHelper } from 'helper';
 import dynamic from 'next/dynamic';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { fromEvent, Subscription, tap } from 'rxjs';
-import styled from 'styled-components';
 
 const Menu = dynamic(() => import('../logos/Menu'));
 const Search = dynamic(() => import('../logos/Search'));

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   background: ${({ theme }) => theme.bgColor};

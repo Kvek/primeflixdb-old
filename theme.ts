@@ -1,7 +1,5 @@
 import { createTheme } from '@material-ui/core';
 
-import 'styled-components';
-
 export interface ThemeColorsInterface {
   bgColor: string;
   borderColor: string;

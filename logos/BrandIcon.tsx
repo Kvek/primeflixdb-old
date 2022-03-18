@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+
 import { MODERATE_CYAN, VERY_DARK_BLUE } from 'theme';
 
 const Icon = styled.svg`
