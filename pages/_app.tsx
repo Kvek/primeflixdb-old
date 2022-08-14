@@ -1,3 +1,5 @@
+import { Provider } from 'react-redux';
+
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -6,6 +8,8 @@ import { ContentWrapper } from '@containers/ContentWrapper';
 import ThemeWrapper from '@containers/ThemeWrapper';
 
 import { Navbar } from '@components/Navbar';
+
+import { store } from '@store/index';
 
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
@@ -29,29 +33,30 @@ const MyApp = ({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: MyAppPropsInterface): JSX.Element => (
-  <RecoilRoot>
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <title>PrimeflixDB</title>
-        <meta charSet="utf-8" />
-        <meta
-          content="PrimeflixDB is a website to view information about movies and tv shows"
-          name="description"
-        />
-        {/* PWA primary color */}
-        <meta content={'#000'} name="theme-color" />
-      </Head>
+  <Provider store={store}>
+    <RecoilRoot>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <title>PrimeflixDB</title>
+          <meta charSet="utf-8" />
+          <meta
+            content="PrimeflixDB is a website to view information about movies and tv shows"
+            name="description"
+          />
+          <meta content={'#000'} name="theme-color" />
+        </Head>
 
-      <ThemeWrapper>
-        <ThemeProvider theme={muiTheme}>
-          <Navbar />
-          <FloatingButtons />
-          <ContentWrapper>
-            <Component {...pageProps} />
-          </ContentWrapper>
-        </ThemeProvider>
-      </ThemeWrapper>
-    </CacheProvider>
-  </RecoilRoot>
+        <ThemeWrapper>
+          <ThemeProvider theme={muiTheme}>
+            <Navbar />
+            <FloatingButtons />
+            <ContentWrapper>
+              <Component {...pageProps} />
+            </ContentWrapper>
+          </ThemeProvider>
+        </ThemeWrapper>
+      </CacheProvider>
+    </RecoilRoot>
+  </Provider>
 );
 export default MyApp;
