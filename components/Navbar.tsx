@@ -7,9 +7,9 @@ import { useRouter } from 'next/router';
 import { scrollSubject } from 'observables/ScrollSubject';
 import { Subscription } from 'rxjs';
 
-const BrandLetter = dynamic(() => import('../logos/BrandLetter'));
-const BrandLogo = dynamic(() => import('../logos/BrandLogo'));
-const Menu = dynamic(() => import('../logos/Menu'));
+const BrandLetter = dynamic(() => import('@logos/BrandLetter'));
+const BrandLogo = dynamic(() => import('@logos/BrandLogo'));
+const Menu = dynamic(() => import('@logos/Menu'));
 
 interface NavbarInterface {
   showShadow: boolean;
@@ -22,10 +22,14 @@ const NavbarContainer = styled.div<NavbarInterface>`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 
   ${({ showShadow, theme }) =>
     showShadow ? ` box-shadow: 0px 0px 19px -15px ${theme.boxShadow};` : ''};
+
+  svg {
+    z-index: 2;
+  }
 `;
 
 const IconContainer = styled.span`

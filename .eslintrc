@@ -17,16 +17,16 @@
     "no-unused-vars": 0,
     "@typescript-eslint/no-unused-vars": 2,
     "better-styled-components/sort-declarations-alphabetically": 2,
-    "react/self-closing-comp": [2],
-    "react/jsx-sort-props": [2],
-    "react/jsx-pascal-case": [2],
-    "arrow-body-style": ["error", "as-needed"],
-    "react-hooks/exhaustive-deps": [2],
-    "import/first": "error",
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
+    "react/self-closing-comp": 2,
+    "react/jsx-sort-props": 2,
+    "react/jsx-pascal-case": 2,
+    "arrow-body-style": [2, "as-needed"],
+    "react-hooks/exhaustive-deps": 2,
+    "import/first": 2,
+    "import/newline-after-import": 2,
+    "import/no-duplicates": 2,
     "simple-import-sort/imports": [
-      "error",
+      2,
       {
         "groups": [
           ["^(react|redux)"],
@@ -44,9 +44,9 @@
       2,
       { "caseSensitive": true }
     ],
-    "sort-imports": "off",
+    "sort-imports": 0,
     "sort-keys-fix/sort-keys-fix": [
-      "error",
+      2,
       "asc",
       { "caseSensitive": true, "natural": true }
     ]

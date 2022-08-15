@@ -1,22 +1,16 @@
 import { memo, useEffect, useState } from 'react';
 
-import { ShowDarkTheme } from '@store/atoms/ShowDarkTheme.atom';
-
 import { useRouter } from 'next/router';
 import { scrollSubject } from 'observables/ScrollSubject';
-import { useRecoilValue } from 'recoil';
 import { Subscription } from 'rxjs';
-import { LIGHT_GRAYISH_YELLOW, VERY_DARK_BLUE } from 'theme';
+import { LIGHT_GRAYISH_YELLOW } from 'theme';
 
 let ScrollSubjectSubscription$: Subscription;
 
 const BrandLogo = memo((): JSX.Element => {
   const { pathname } = useRouter();
 
-  const isDarkThemeToggled = useRecoilValue(ShowDarkTheme);
-  const themeColor = isDarkThemeToggled ? LIGHT_GRAYISH_YELLOW : VERY_DARK_BLUE;
-
-  const [fill, setFill] = useState(themeColor);
+  const [fill, setFill] = useState(LIGHT_GRAYISH_YELLOW);
 
   useEffect(() => {
     const scrollToggleHeight = (window.innerWidth * 56.25) / 100;
@@ -26,7 +20,7 @@ const BrandLogo = memo((): JSX.Element => {
         if (e < scrollToggleHeight) {
           if (fill !== LIGHT_GRAYISH_YELLOW) setFill(LIGHT_GRAYISH_YELLOW);
         } else {
-          if (fill !== themeColor) setFill(themeColor);
+          if (fill !== LIGHT_GRAYISH_YELLOW) setFill(LIGHT_GRAYISH_YELLOW);
         }
       });
     }
@@ -34,7 +28,7 @@ const BrandLogo = memo((): JSX.Element => {
     () => {
       ScrollSubjectSubscription$.unsubscribe();
     };
-  }, [pathname, fill, themeColor]);
+  }, [pathname, fill]);
 
   return (
     <svg fill="none" viewBox="0 0 670 120" xmlns="http://www.w3.org/2000/svg">

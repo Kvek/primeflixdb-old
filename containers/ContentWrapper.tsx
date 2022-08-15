@@ -1,18 +1,15 @@
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 
-import { Search } from '@components/Search';
-
-import { ShowLoading } from '@store/atoms/ShowLoading.atom';
-import { ShowSearch } from '@store/atoms/ShowSearch.atom';
+import { selectLoading } from '@store/config.reducer';
 
 import dynamic from 'next/dynamic';
 import { scrollSubject } from 'observables/ScrollSubject';
-import { useRecoilValue } from 'recoil';
 import { fromEvent, Subscription } from 'rxjs';
 
-const Loading = dynamic(() => import('../components/Loading'));
+const Loading = dynamic(() => import('@components/Loading'));
 
 const Container = styled.div`
   height: 100%;
@@ -33,14 +30,11 @@ const onScrollHandler = (node: Element | null) => {
 };
 
 export const ContentWrapper: FC = ({ children }) => {
-  const isLoading = useRecoilValue(ShowLoading);
-  const showSearch = useRecoilValue(ShowSearch);
+  const isLoading = useSelector(selectLoading);
 
   return (
     <>
       {isLoading && <Loading />}
-
-      {showSearch && <Search />}
 
       <Container ref={onScrollHandler}>{children}</Container>
     </>

@@ -91,14 +91,6 @@ export const themeConfiguration: GlobalThemeInterface = {
   transitionSpeed: TRANSITION_SPEED,
 };
 
-export const LIGHT_THEME: ThemeColorsInterface = {
-  bgColor: GRAYISH_YELLOW,
-  borderColor: VERY_DARK_BLUE,
-  boxShadow: BLACK,
-  color: VERY_DARK_BLUE,
-  hoverBorderColor: LIGHT_BORDER_HOVER,
-};
-
 export const DARK_THEME: ThemeColorsInterface = {
   bgColor: BLACK,
   borderColor: LIGHT_BORDER,

@@ -28,7 +28,7 @@ const Container = styled.div`
 `;
 
 const Dot = styled.span`
-  background: ${({ theme: { color } }) => color};
+  /* background: ${({ theme: { color } }) => color}; */
   border-radius: 50%;
   height: 5px;
   position: absolute;

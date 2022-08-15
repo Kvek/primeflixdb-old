@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import styled from '@emotion/styled';
 
-import { ShowLoading } from '@store/atoms/ShowLoading.atom';
+import { SET_LOADING } from '@store/config.reducer';
+import { useAppDispatch } from '@store/index';
 
 import { gsap } from 'gsap';
 import dynamic from 'next/dynamic';
-import { useSetRecoilState } from 'recoil';
 
-const BrandIcon = dynamic(() => import('../logos/BrandIcon'));
+const BrandIcon = dynamic(() => import('@logos/BrandIcon'));
 
 const Container = styled.div`
   align-items: center;
@@ -33,9 +33,11 @@ const timeLine = gsap.timeline({
 });
 
 const Loading = (): JSX.Element => {
-  const setShowLoadingScreen = useSetRecoilState(ShowLoading);
+  const dispatch = useAppDispatch();
 
-  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+  const onCompleteLoadingHandler = useCallback(() => {
+    dispatch(SET_LOADING(false));
+  }, [dispatch]);
 
   useEffect(() => {
     timeLine
@@ -49,19 +51,16 @@ const Loading = (): JSX.Element => {
       })
       .to('#loading-logo', {
         delay: 0.5,
-        onComplete: () => setIsLoadingComplete(true),
         scale: 0,
-      });
-  }, []);
-
-  useEffect(() => {
-    if (isLoadingComplete) {
-      timeLine.to('#loading-container', {
-        onComplete: () => setShowLoadingScreen(false),
+      })
+      .to('#loading-container', {
         opacity: 0,
+      })
+      .to('#loading-container', {
+        display: 'none',
+        onComplete: () => onCompleteLoadingHandler(),
       });
-    }
-  }, [isLoadingComplete, setShowLoadingScreen]);
+  }, [onCompleteLoadingHandler]);
 
   return (
     <Container id="loading-container">
